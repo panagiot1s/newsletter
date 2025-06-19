@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Modern Newsletter - V2 (Fixed)</title>
+
+    <link rel="icon" type="image/png" href="https://imgur.com/7JlaiLq" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://imgur.com/gF9rKf5" sizes="16x16">
+    <link rel="shortcut icon" href="https://deidplr.sharepoint.com/:i:/r/teams/Newsletter90/Shared%20Documents/Newsletter/NL_001/%CE%94%CE%95%CE%97_logo.png?csf=1&web=1&e=kIP4ud" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #eef2f5; /* Very light blue-grey */
+            color: #333;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: #2c3e50; /* Dark blue-grey */
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 2.3em; /* Slightly smaller to accommodate logo */
+            text-align: left; /* Align text to the left */
+            margin-bottom: 10px;
+            font-weight: 700;
+            display: inline-block; /* Make it inline with the logo */
+            vertical-align: middle; /* Align vertically with the logo */
+            margin-left: 10px; /* Add some space between the logo and title */
+        }
+
+        h2 {
+            font-size: 2.2em;
+            text-align: center;
+            color: #34495e;
+            margin-top: 40px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #4a90e2; /* Modern blue accent */
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.6em;
+            color: #4a4a4a;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1em;
+            font-size: 1.05em;
+            color: #555;
+        }
+
+        a {
+            color: #4a90e2; /* Modern blue for links */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #357ABD; /* Darker blue on hover */
+            text-decoration: underline;
+        }
+
+        /* Header Specifics */
+        .newsletter-header {
+            text-align: center;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .newsletter-header .tagline {
+            font-size: 1.1em;
+            color: #777;
+            margin-top: 10px;
+        }
+
+        .newsletter-header .date {
+            font-size: 0.9em;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        /* Article Card Styling */
+        .article-card {
+            background-color: #fcfcfc;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+            margin-bottom: 35px;
+            overflow: hidden; /* Ensures border-radius applies to image */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-image-wrapper {
+            width: 100%; /* Full width on mobile */
+            padding-top: 56.25%; /* 16:9 Aspect Ratio (height/width * 100%) */
+            position: relative;
+            background-color: #f0f0f0; /* Fallback/loading color */
+        }
+
+        .article-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures image covers area, might crop slightly */
+            border-radius: 8px 8px 0 0; /* Rounded top corners, sharp bottom */
+        }
+
+        .article-content {
+            padding: 25px;
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: #ffffff; /* Ensure text is white */
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .read-more:hover {
+            background-color: #357ABD;
+            color: #ffffff; /* Keep text white on hover */
+        }
+
+        /* Footer Section */
+        .newsletter-footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid #e0e0e0;
+            color: #888;
+            font-size: 0.85em;
+        }
+
+        /* Responsive Adjustments */
+        @media (min-width: 600px) {
+            .article-card {
+                display: flex;
+                flex-direction: row; /* Side-by-side on larger screens */
+                align-items: center; /* Vertically align items */
+            }
+
+            .article-image-wrapper {
+                flex: 0 0 250px; /* Fixed width for image wrapper */
+                height: 150px; /* Fixed height for consistency */
+                padding-top: 0; /* Remove padding-top trick when height is fixed */
+                border-radius: 8px 0 0 8px; /* Rounded left corners */
+            }
+
+            .article-image {
+                border-radius: 8px 0 0 8px; /* Match wrapper */
+            }
+
+            .article-content {
+                flex-grow: 1;
+                padding-left: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 15px;
+                padding: 25px 20px;
+            }
+            h1 {
+                font-size: 2.2em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            h3 {
+                font-size: 1.4em;
+            }
+        }
+
+        /* Logo Styling */
+        .logo {
+            max-height: 50px; /* Adjust the height as needed */
+            vertical-align: middle; /* Align the logo vertically with the title */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="newsletter-header">
+            <img src="https://imgur.com/vQlD9j1" alt="ΔΕΗ Logo" class="logo">
+            <h1>The Weekly AI Digest</h1>
+            <p class="tagline">Your Weekly Pulse on AI Innovation.</p>
+            <p class="date">May 27, 2025</p>
+        </header>
+
+        <main>
+            <h2>Latest Breakthroughs</h2>
+            <p>Welcome to this week's roundup of significant developments in AI. From groundbreaking research to practical applications, we've got you covered.</p>
+
+            <div class="article-card">
+                <div class="article-image-wrapper">
+                    <img src="https://imgur.com/NpiF81a" alt="Copilot open source image" class="article-image">
+                </div>
+                <div class="article-content">
+                    <h3>Microsoft Open-Sources GitHub Copilot Chat Extension</h3>
+                    <p>Microsoft has made a significant move by open-sourcing the GitHub Copilot Chat extension under the MIT license. This aims to foster transparency and community contribution to AI tools within code editors, enhancing the developer experience.</p>
+                    <a href="https://medium.com/@servifyspheresolutions/microsoft-just-open-sourced-github-copilot-under-mit-license-and-it-changes-everything-for-2673536f2cbb" class="read-more" target="_blank">Read More</a>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image-wrapper">
+                    <img src="https://imgur.com/8gm8TEA" alt="Gemini Diffusion image" class="article-image">
+                </div>
+                <div class="article-content">
+                    <h3>Google’s Gemini Diffusion: Blazing Fast Text Generation</h3>
+                    <p>Google DeepMind has introduced Gemini Diffusion, an experimental AI model that generates text at unprecedented speeds. Its unique diffusion-based architecture allows for rapid, coherent output, marking a new frontier in generative AI capabilities.</p>
+                    <a href="https://fortune.com/2025/05/21/gemini-diffusion-google-io-sleeper-hit-blazing-speed-ai-model-wars/" class="read-more" target="_blank">Read More</a>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image-wrapper">
+                    <img src="https://imgur.com/SrtstjJ" alt="Project Astra image" class="article-image">
+                </div>
+                <div class="article-content">
+                    <h3>Project Astra Demo: The Future of Personalized AI Assistants</h3>
+                    <p>The latest demo of Google's Project Astra showcases its evolution into a highly proactive and personalized AI assistant. It now demonstrates advanced capabilities in controlling devices and performing complex, multi-step tasks autonomously.</p>
+                    <a href="https://www.androidpolice.com/project-astra-demo-2025/" class="read-more" target="_blank">Read More</a>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image-wrapper">
+                    <img src="https://imgur.com/pTa7SjM" alt="Veo 3 image" class="article-image">
+                </div>
+                <div class="article-content">
+                    <h3>AI Meets Cinema: Google Flow and Veo 3 for Filmmakers</h3>
+                    <p>Google has launched Flow, an AI filmmaking assistant powered by Veo 3, Gemini, and Imagen. This innovative platform aims to revolutionize video creation, assisting filmmakers from scripting to final production with advanced generative capabilities.</p>
+                    <a href="https://www.techi.com/google-flow-veo-3-ai-filmmaking-platform/" class="read-more" target="_blank">Read More</a>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image-wrapper">
+                    <img src="https://imgur.com/vjw0lW7" alt="Intellect 2 image" class="article-image">
+                </div>
+                <div class="article-content">
+                    <h3>Intellect-2: First 32B Parameter Model via Distributed RL</h3>
+                    <p>Prime Intellect has unveiled INTELLECT-2, a groundbreaking 32 billion parameter model trained using globally distributed reinforcement learning. This represents a significant leap in decentralized AI training, leveraging a permissionless compute swarm.</p>
+                    <a href="https://www.primeintellect.ai/blog/intellect-2-release" class="read-more" target="_blank">Read More</a>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image-wrapper">
+                    <img src="https://imgur.com/X6zNSLu" alt="Tencent's Hunyuan3D 2.0 image" class="article-image">
+                </div>
+                <div class="article-content">
+                    <h3>Tencent's Hunyuan3D 2.0: From 2D Images to Detailed 3D Objects</h3>
+                    <p>Tencent has released Hunyuan3D 2.0, an open-source generative AI system that transforms 2D images into highly detailed, textured 3D models. This advancement, coupled with a web-based toolkit, makes 3D creation more accessible than ever.</p>
+                    <a href="https://the-decoder.com/new-tencent-ai-model-hunyuan3d-2-0-turns-2d-images-into-detailed-3d-objects/" class="read-more" target="_blank">Read More</a>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image-wrapper">
+                    <img src="https://deidplr.sharepoint.com/:i:/r/teams/Newsletter90/Shared%20Documents/Newsletter/NL_001/Alibebe%20Wan2.1.jpg?csf=1&web=1&e=XBFynh" alt="Visual representation of AI video editing tools or a video timeline" class="article-image">
+                </div>
+                <div class="article-content">
+                    <h3>Alibaba Wan2.1-VACE: Open-Source AI Video Tool for All</h3>
+                    <p>Alibaba Cloud has open-sourced Wan 2.1-VACE, an all-in-one AI model designed to streamline video creation and editing. It supports multimodal inputs and offers comprehensive editing capabilities, making advanced video production accessible to a wider audience.</p>
+                    <a href="https://www.alibabacloud.com/blog/alibaba-introduces-open-source-model-for-video-creation-and-editing_602226" class="read-more" target="_blank">Read More</a>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image-wrapper">
+                    <img src="https://deidplr.sharepoint.com/:i:/r/teams/Newsletter90/Shared%20Documents/Newsletter/NL_001/bagel.png?csf=1&web=1&e=rxHkwN" alt="Abstract image symbolizing an all-encompassing or versatile AI model" class="article-image">
+                </div>
+                <div class="article-content">
+                    <h3>BAGEL by ByteDance: The All-in-One LLM for Diverse AI Tasks</h3>
+                    <p>ByteDance's BAGEL is introduced as an "all-in-one" large language model (LLM) designed for comprehensive capabilities across various AI applications. It excels in multimodal understanding and generation, offering a versatile foundation for diverse AI challenges.</p>
+                    <a href="https://medium.com/data-science-in-your-pocket/bagel-by-bytedance-the-all-in-one-llm-7f65b84f103a" class="read-more" target="_blank">Read More</a>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="newsletter-footer">
+            <p>Stay informed with the latest in AI.</p>
+            <p>&copy; 2025 The Weekly AI Digest. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

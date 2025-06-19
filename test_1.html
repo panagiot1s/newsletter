@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Weekly AI Digest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #eef2f5;
+      color: #333;
+    }
+    .container {
+      max-width: 750px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    }
+    header {
+      text-align: center;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+    .logo {
+      max-height: 50px;
+      vertical-align: middle;
+    }
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.3em;
+      font-weight: 700;
+      margin: 10px 0 5px;
+    }
+    .tagline {
+      font-size: 1.1em;
+      color: #777;
+    }
+    .date {
+      font-size: 0.9em;
+      color: #999;
+      margin-top: 5px;
+    }
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2em;
+      text-align: center;
+      color: #34495e;
+      margin-top: 40px;
+      position: relative;
+    }
+    h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: #4a90e2;
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+    .article-card {
+      background: #fcfcfc;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      margin-bottom: 35px;
+      transition: 0.3s ease;
+    }
+    .article-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    .article-image-wrapper {
+      width: 100%;
+      padding-top: 56.25%;
+      position: relative;
+      background: #f0f0f0;
+    }
+    .article-image {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .article-content {
+      padding: 20px 25px;
+    }
+    .article-content h3 {
+      font-size: 1.4em;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0 0 10px;
+    }
+    .article-content p {
+      font-size: 1.05em;
+      color: #555;
+      margin: 0 0 15px;
+    }
+    .read-more {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #4a90e2;
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .read-more:hover {
+      background: #357ABD;
+    }
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 25px;
+      border-top: 1px solid #e0e0e0;
+      color: #888;
+      font-size: 0.85em;
+    }
+    @media (min-width: 600px) {
+      .article-card {
+        display: flex;
+        flex-direction: row;
+      }
+      .article-image-wrapper {
+        flex: 0 0 250px;
+        height: 150px;
+        padding-top: 0;
+      }
+      .article-image {
+        border-radius: 8px 0 0 8px;
+      }
+      .article-content {
+        padding-left: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="https://deidplr.sharepoint.com/:i:/r/teams/Newsletter90/Shared%20Documents/Newsletter/NL_001/%CE%94%CE%95%CE%97_logo.png?csf=1&web=1&e=kIP4ud" alt="ΔΕΗ Logo" class="logo"/>
+      <h1>The Weekly AI Digest</h1>
+      <p class="tagline">Your Weekly Pulse on AI Innovation</p>
+      <p class="date">May 27, 2025</p>
+    </header>
+
+    <h2>Latest Breakthroughs</h2>
+    <p>Welcome to this week's roundup of significant developments in AI. From groundbreaking research to practical applications, we've got you covered.</p>
+
+    <!-- ARTICLE LOOP EXAMPLE -->
+    <!-- Replace the content and repeat this block as needed -->
+    <div class="article-card">
+      <div class="article-image-wrapper">
+        <img src="https://deidplr.sharepoint.com/:i:/r/teams/Newsletter90/Shared%20Documents/Newsletter/NL_001/MS_Copitot.png?csf=1&web=1&e=wzNJns" alt="Copilot Chat" class="article-image"/>
+      </div>
+      <div class="article-content">
+        <h3>Microsoft Open-Sources GitHub Copilot Chat Extension</h3>
+        <p>Microsoft has made a significant move by open-sourcing the GitHub Copilot Chat extension under the MIT license, fostering transparency and innovation in dev tools.</p>
+        <a href="https://medium.com/@servifyspheresolutions/microsoft-just-open-sourced-github-copilot-under-mit-license-and-it-changes-everything-for-2673536f2cbb" class="read-more" target="_blank">Read More</a>
+      </div>
+    </div>
+    <!-- Repeat similar article-card blocks for other stories -->
+
+    <footer>
+      <p>Stay informed with the latest in AI.</p>
+      <p>&copy; 2025 The Weekly AI Digest. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
