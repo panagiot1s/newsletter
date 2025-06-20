@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Modern Newsletter - Latest AI Insights</title>
+
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+    <link rel="shortcut icon" href="ppc.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #eef2f5; /* Very light blue-grey */
+            color: #333;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: #2c3e50; /* Dark blue-grey */
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 2.3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-align: center; /* Crucial for centering the text itself */
+            width: 100%; /* Ensure H1 takes full width within its flex container */
+        }
+
+        h2 {
+            font-size: 2.2em;
+            text-align: center;
+            color: #34495e;
+            margin-top: 40px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #4a90e2; /* Modern blue accent */
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.6em;
+            color: #4a4a4a;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-align: left; /* Keep h3 left aligned always */
+        }
+
+        p {
+            margin-bottom: 1em;
+            font-size: 1.05em;
+            color: #555;
+        }
+
+        a {
+            color: #4a90e2; /* Modern blue for links */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #357ABD; /* Darker blue on hover */
+            text-decoration: underline;
+        }
+
+        /* Header Specifics */
+        .newsletter-header {
+            text-align: center; /* This will center tagline and date */
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .newsletter-header .tagline {
+            font-size: 1.1em;
+            color: #777;
+            margin-top: 10px;
+        }
+
+        .newsletter-header .date {
+            font-size: 0.9em;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        /* Article Card Styling */
+        .article-card {
+            background-color: #fcfcfc;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+            margin-bottom: 35px;
+            overflow: hidden; /* Ensures border-radius applies to image */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-image-wrapper {
+            width: 100%; /* Full width on mobile */
+            padding-top: 56.25%; /* 16:9 Aspect Ratio (height/width * 100%) */
+            position: relative;
+            background-color: #f0f0f0; /* Fallback/loading color */
+        }
+
+        .article-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures image covers area, might crop slightly */
+            border-radius: 8px; /* All corners rounded for both mobile and desktop */
+        }
+
+        .article-content {
+            padding: 25px;
+        }
+
+        /* Target paragraphs within article content for specific alignment */
+        .article-content p {
+            text-align: justify; /* Justify for both mobile and desktop now */
+        }
+
+        /* Read More button styling */
+        .read-more {
+            display: block; /* Make it a block element to control its own centering */
+            margin: 15px auto 0 auto; /* Center button horizontally on mobile */
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: #ffffff;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            width: fit-content; /* Make button only as wide as its content */
+        }
+
+        .read-more:hover {
+            background-color: #357ABD;
+            color: #ffffff;
+        }
+
+        /* Footer Section */
+        .newsletter-footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid #e0e0e0;
+            color: #888;
+            font-size: 0.85em;
+        }
+
+        /* Logo Styling */
+        .logo {
+            max-height: 80px; /* INCREASED SIZE: Make the logo significantly bigger */
+            /* Removed `display: block;` and `margin: 0 auto...` here because flexbox handles centering now */
+            border-radius: 8px; /* Rounded corners for the logo */
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column; /* Stack logo and title vertically */
+            align-items: center; /* Center items horizontally within the flex container */
+            justify-content: center; /* Center the whole block vertically if there's extra space */
+            margin-bottom: 10px; /* Space below the logo/title block */
+            gap: 15px; /* Use gap for consistent spacing between logo and text */
+            width: 100%; /* Ensure flex container takes full width to center its content */
+        }
+
+        /* Paragraph after H2 - for specific styling */
+        .intro-paragraph {
+            text-align: center; /* Default center for mobile */
+        }
+
+        /* Responsive Adjustments */
+        @media (min-width: 600px) {
+            .article-card {
+                display: flex;
+                flex-direction: row; /* Side-by-side on larger screens */
+                align-items: center; /* Vertically align items */
+            }
+
+            .article-image-wrapper {
+                flex: 0 0 250px; /* Fixed width for image wrapper */
+                height: 150px; /* Fixed height for consistency */
+                padding-top: 0; /* Remove padding-top trick when height is fixed */
+                border-radius: 8px; /* All corners rounded for desktop */
+            }
+
+            .article-image {
+                border-radius: 8px; /* All corners rounded for desktop */
+            }
+
+            .article-content {
+                flex-grow: 1;
+                padding-left: 25px;
+            }
+
+            .article-content p {
+                text-align: justify;
+            }
+
+            .article-content h3 {
+                text-align: left;
+            }
+
+            .read-more {
+                display: inline-block;
+                margin-left: 0;
+                margin-right: auto;
+            }
+
+            .header-content {
+                /* These are already set for vertical stacking and centering */
+                /* flex-direction: column; */
+                /* align-items: center; */
+            }
+
+            h1 {
+                text-align: center; /* Keep centered on desktop */
+            }
+
+            .logo {
+                /* No specific margin adjustments needed here, gap handles it */
+            }
+
+            .intro-paragraph {
+                text-align: justify; /* Justify intro paragraph on desktop */
+            }
+        }
+
+        @media (max-width: 599px) {
+            .container {
+                margin: 15px;
+                padding: 25px 20px;
+            }
+            h1 {
+                font-size: 1.8em;
+                text-align: center;
+                width: 100%; /* Ensure H1 takes full width on mobile too */
+            }
+            .logo {
+                max-height: 70px; /* Slightly smaller on mobile for better fit */
+                /* No specific margin adjustments needed here, gap handles it */
+            }
+            .header-content {
+                /* These are already set for vertical stacking and centering */
+                /* flex-direction: column; */
+                /* align-items: center; */
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            h3 {
+                font-size: 1.4em;
+                text-align: left;
+            }
+            .intro-paragraph {
+                text-align: center; /* Center intro paragraph on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="newsletter-header">
+            <div class="header-content">
+                <img src="ppc.png" alt="ppc logo" class="logo">
+                <h1>The Weekly AI Digest</h1>
+            </div>
+            <p class="tagline">Navigating the AI Revolution.</p>
+            <p class="date">June 20, 2025</p>
+        </header>
+
+        <main>
+            <h2>Latest Breakthroughs</h2>
+            <p class="intro-paragraph">Welcome to this week's roundup of significant developments in AI. From groundbreaking research to practical applications, we've got you covered.</p>
+
+            <div class="article-card">
+                <div class="article-image-wrapper">
+                    <img src="proactor.jpg" alt="Abstract image representing a proactive AI agent" class="article-image">
+                </div>
+                <div class="article-content">
+                    <h3>Proactor, the world’s first proactive AI agent.</h3>
+                    <p>Proactor, the world's first proactive AI agent, makes its debut, promising a new era of autonomous systems that anticipate needs and act without explicit commands.</p>
+                    <a href="https://x.com/Proactor_ai/status/1934967361070866747" class="read-more" target="_blank">Read More</a>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image-wrapper">
+                    <img src="ai_avatar.jpg" alt="Image of an AI avatar influencing digitally" class="article-image">
+                </div>
+                <div class="article-content">
+                    <h3>AI avatars in China just proved they are better influencers.</h3>
+                    <p>A recent study from China indicates that AI avatars are outperforming human influencers in engagement and effectiveness, signaling a shift in digital marketing strategies.</p>
+                    <a href="https://www.cnbc.com/2025/06/19/ai-humans-in-china-just-proved-they-are-better-influencers.html" class="read-more" target="_blank">Read More</a>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image-wrapper">
+                    <img src="hailuo_02.jpg" alt="Visual representation of video generation or comparison" class="article-image">
+                </div>
+                <div class="article-content">
+                    <h3>MiniMax's Hailuo 02 tops Google Veo 3 in user benchmarks at much lower video costs</h3>
+                    <p>MiniMax's Hailuo 02 video generation model has surpassed Google Veo 3 in user benchmarks, offering superior performance at a significantly reduced cost for video creation.</p>
+                    <a href="https://the-decoder.com/minimaxs-hailuo-02-tops-google-veo-3-in-user-benchmarks-at-much-lower-video-costs/" class="read-more" target="_blank">Read More</a>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image-wrapper">
+                    <img src="minimax_m1.png" alt="Abstract image of cost efficiency in AI training" class="article-image">
+                </div>
+                <div class="article-content">
+                    <h3>China’s MiniMax debuts M1 AI model that it says costs 200x less to train than OpenAI’s GPT-4</h3>
+                    <p>China's MiniMax has launched its M1 AI model, claiming it can be trained at a staggering 200 times less cost than OpenAI's GPT-4, potentially disrupting the LLM landscape.</p>
+                    <a href="https://fortune.com/2025/06/18/chinas-minimax-m1-ai-model-200x-less-expensive-to-train-than-openai-gpt-4/" class="read-more" target="_blank">Read More</a>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image-wrapper">
+                    <img src="apple_ai.png" alt="Image representing an Apple product with AI features" class="article-image">
+                </div>
+                <div class="article-content">
+                    <h3>Apple AI paper likely self-serving but has some merit</h3>
+                    <p>An Apple AI research paper has been released, drawing scrutiny for potentially serving the company's interests, yet experts acknowledge its underlying technical contributions and merit.</p>
+                    <a href="https://www.techtarget.com/searchenterpriseai/news/366626101/Apple-AI-paper-likely-self-serving-but-has-some-merit" class="read-more" target="_blank">Read More</a>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image-wrapper">
+                    <img src="langgraph_gemini.jpg" alt="Diagram or abstract image representing an AI agent stack" class="article-image">
+                </div>
+                <div class="article-content">
+                    <h3>Google Introduces Open-Source new AI Agent built with Gemini 2.5 and LangGraph</h3>
+                    <p>Google has unveiled an open-source full-stack AI agent stack, leveraging Gemini 2.5 and LangGraph to enable multi-step web searches, complex reflection, and advanced synthesis capabilities.</p>
+                    <a href="https://www.marktechpost.com/2025/06/08/google-introduces-open-source-full-stack-ai-agent-stack-using-gemini-2-5-and-langgraph-for-multi-step-web-search-reflection-and-synthesis/" class="read-more" target="_blank">Read More</a>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="newsletter-footer">
+            <p>Stay informed with the latest in AI</p>
+            <p>&copy; 2025 The Weekly AI Digest. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
