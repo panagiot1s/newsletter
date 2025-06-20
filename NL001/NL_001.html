@@ -37,11 +37,11 @@
         }
 
         h1 {
-            font-size: 2.3em; /* Slightly smaller to accommodate logo */
+            font-size: 2.3em;
             margin-bottom: 10px;
             font-weight: 700;
-            display: inline-block; /* Make it inline with the logo */
-            vertical-align: middle; /* Align vertically with the logo */
+            text-align: center; /* Crucial for centering the text itself */
+            width: 100%; /* Ensure H1 takes full width within its flex container */
         }
 
         h2 {
@@ -143,7 +143,6 @@
 
         .article-content {
             padding: 25px;
-            /* No text-align here, will be applied specifically to p and button */
         }
 
         /* Target paragraphs within article content for specific alignment */
@@ -182,23 +181,25 @@
 
         /* Logo Styling */
         .logo {
-            max-height: 40px; /* Adjusted height for header logo */
-            vertical-align: middle; /* Align the logo vertically with the title */
+            max-height: 80px; /* INCREASED SIZE: Make the logo significantly bigger */
+            /* Removed `display: block;` and `margin: 0 auto...` here because flexbox handles centering now */
             border-radius: 8px; /* Rounded corners for the logo */
         }
+
         .header-content {
-            display: flex; /* Use flexbox for logo and title alignment */
-            align-items: center; /* Vertically center them */
-            justify-content: center; /* Center the entire block */
-            margin-bottom: 10px; /* Space below the logo/title line */
-            gap: 10px; /* Add gap for consistent spacing between logo and text */
+            display: flex;
+            flex-direction: column; /* Stack logo and title vertically */
+            align-items: center; /* Center items horizontally within the flex container */
+            justify-content: center; /* Center the whole block vertically if there's extra space */
+            margin-bottom: 10px; /* Space below the logo/title block */
+            gap: 15px; /* Use gap for consistent spacing between logo and text */
+            width: 100%; /* Ensure flex container takes full width to center its content */
         }
 
         /* Paragraph after H2 - for specific styling */
         .intro-paragraph {
             text-align: center; /* Default center for mobile */
         }
-
 
         /* Responsive Adjustments */
         @media (min-width: 600px) {
@@ -222,36 +223,34 @@
             .article-content {
                 flex-grow: 1;
                 padding-left: 25px;
-                /* No text-align here, paragraphs and button handled individually */
             }
 
-            /* Justify paragraphs within article content for desktop (already global, but explicitly here for clarity) */
             .article-content p {
                 text-align: justify;
             }
 
-            /* Ensure h3 remains left-aligned on desktop (already global, but safe to keep) */
             .article-content h3 {
                 text-align: left;
             }
 
-            /* Read More button left-aligned on desktop */
             .read-more {
-                display: inline-block; /* Revert to inline-block for desktop */
-                margin-left: 0; /* Remove auto margins to align left */
+                display: inline-block;
+                margin-left: 0;
                 margin-right: auto;
             }
 
-            /* Desktop Specific Header Alignment */
             .header-content {
-                justify-content: center; /* Keep centered block */
+                /* These are already set for vertical stacking and centering */
+                /* flex-direction: column; */
+                /* align-items: center; */
             }
-             h1 {
-                text-align: left; /* Align text to the left */
-                margin-left: 10px; /* Add some space between the logo and title */
+
+            h1 {
+                text-align: center; /* Keep centered on desktop */
             }
+
             .logo {
-                margin-right: 5px; /* Space between logo and text */
+                /* No specific margin adjustments needed here, gap handles it */
             }
 
             .intro-paragraph {
@@ -267,18 +266,16 @@
             h1 {
                 font-size: 1.8em;
                 text-align: center;
-                margin-left: 0;
-                width: 100%;
+                width: 100%; /* Ensure H1 takes full width on mobile too */
             }
             .logo {
-                margin-right: 0;
-                display: block;
-                margin: 0 auto 10px auto;
+                max-height: 70px; /* Slightly smaller on mobile for better fit */
+                /* No specific margin adjustments needed here, gap handles it */
             }
             .header-content {
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
+                /* These are already set for vertical stacking and centering */
+                /* flex-direction: column; */
+                /* align-items: center; */
             }
             h2 {
                 font-size: 1.8em;
@@ -287,14 +284,9 @@
                 font-size: 1.4em;
                 text-align: left;
             }
-            .article-content {
-                /* No text-align here, paragraphs and button handled individually */
-            }
-            /* .article-content p is now globally justified */
             .intro-paragraph {
                 text-align: center; /* Center intro paragraph on mobile */
             }
-            /* .read-more is already set to display: block and margin: auto for centering on mobile */
         }
     </style>
 </head>
@@ -305,7 +297,7 @@
                 <img src="ppc.png" alt="ppc logo" class="logo">
                 <h1>The Weekly AI Digest</h1>
             </div>
-            <p class="tagline">Navigating the AI Revolution, One Update at a Time.</p>
+            <p class="tagline">Navigating the AI Revolution.</p>
             <p class="date">June 20, 2025</p>
         </header>
 
